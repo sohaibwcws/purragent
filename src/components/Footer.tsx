@@ -72,21 +72,10 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-8 sm:flex-row">
+        <div className="mt-12 border-t border-white/5 pt-8 text-center">
           <p className="text-xs text-muted">
             &copy; {new Date().getFullYear()} PurrAgent. All rights reserved.
           </p>
-          <div className="flex gap-6">
-            {["Twitter", "LinkedIn", "GitHub"].map((item) => (
-              <a
-                key={item}
-                href="#"
-                className="text-xs text-muted transition-colors hover:text-white"
-              >
-                {item}
-              </a>
-            ))}
-          </div>
         </div>
       </div>
     </footer>
