@@ -1,18 +1,38 @@
 import Logo from "./Logo";
 
+const productLinks = [
+  { label: "Features", href: "/#features" },
+  { label: "The App", href: "/#app" },
+  { label: "How It Works", href: "/#how-it-works" },
+  { label: "iOS App", href: "https://apps.apple.com/app/catpaw-ai-office/id6760197470" },
+];
+
+const companyLinks = [
+  { label: "About", href: "/about" },
+  { label: "Blog", href: "/blog" },
+  { label: "Careers", href: "/careers" },
+  { label: "Contact", href: "/contact" },
+];
+
+const legalLinks = [
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms of Service", href: "/terms" },
+  { label: "Security", href: "/security" },
+];
+
 export default function Footer() {
   return (
     <footer className="border-t border-white/5 bg-surface py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <div className="flex items-center gap-2.5">
+            <a href="/" className="flex items-center gap-2.5">
               <Logo size={34} />
               <span className="text-lg font-bold">
                 <span className="text-teal">PURR</span>
                 <span className="text-white">AGENT</span>
               </span>
-            </div>
+            </a>
             <p className="mt-3 text-sm text-muted leading-relaxed">
               Your AI-powered office at your fingertips. Manage your entire
               business through intelligent AI agents.
@@ -22,31 +42,29 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-semibold">Product</h4>
             <ul className="mt-3 space-y-2">
-              {["Features", "The App", "Integrations", "iOS App"].map(
-                (item) => (
-                  <li key={item}>
-                    <a
-                      href="#"
-                      className="text-sm text-muted transition-colors hover:text-white"
-                    >
-                      {item}
-                    </a>
-                  </li>
-                )
-              )}
+              {productLinks.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    className="text-sm text-muted transition-colors hover:text-white"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div>
             <h4 className="text-sm font-semibold">Company</h4>
             <ul className="mt-3 space-y-2">
-              {["About", "Blog", "Careers", "Contact"].map((item) => (
-                <li key={item}>
+              {companyLinks.map((link) => (
+                <li key={link.label}>
                   <a
-                    href="#"
+                    href={link.href}
                     className="text-sm text-muted transition-colors hover:text-white"
                   >
-                    {item}
+                    {link.label}
                   </a>
                 </li>
               ))}
@@ -56,18 +74,16 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-semibold">Legal</h4>
             <ul className="mt-3 space-y-2">
-              {["Privacy Policy", "Terms of Service", "Security"].map(
-                (item) => (
-                  <li key={item}>
-                    <a
-                      href="#"
-                      className="text-sm text-muted transition-colors hover:text-white"
-                    >
-                      {item}
-                    </a>
-                  </li>
-                )
-              )}
+              {legalLinks.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    className="text-sm text-muted transition-colors hover:text-white"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
