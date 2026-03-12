@@ -11,7 +11,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(20,184,166,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(20,184,166,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
 
       {/* Radial glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-teal/5 blur-[120px]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] sm:w-[800px] sm:h-[800px] rounded-full bg-teal/5 blur-[120px]" />
 
       {/* Floating orbs */}
       <div className="absolute top-20 left-[15%] w-2 h-2 rounded-full bg-teal/40 animate-[float_6s_ease-in-out_infinite]" />
@@ -107,27 +107,27 @@ export default function Hero() {
               </div>
 
               {/* Chat messages */}
-              <div className="space-y-3">
-                <div className="flex gap-3">
-                  <div className="h-8 w-8 shrink-0 rounded-lg bg-teal/10 flex items-center justify-center border border-teal/20">
-                    <span className="text-teal text-xs font-bold">CEO</span>
+              <div className="space-y-2 sm:space-y-3">
+                <div className="flex gap-2 sm:gap-3">
+                  <div className="h-7 w-7 sm:h-8 sm:w-8 shrink-0 rounded-lg bg-teal/10 flex items-center justify-center border border-teal/20">
+                    <span className="text-teal text-[10px] sm:text-xs font-bold">CEO</span>
                   </div>
-                  <div className="rounded-lg bg-white/5 border border-white/5 px-4 py-2.5 text-sm text-muted">
+                  <div className="rounded-lg bg-white/5 border border-white/5 px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm text-muted">
                     Good morning! 3 tasks completed overnight. Revenue report is
                     ready, and I&apos;ve scheduled your meetings for today.
                   </div>
                 </div>
-                <div className="flex gap-3 justify-end">
-                  <div className="rounded-lg bg-teal/10 border border-teal/20 px-4 py-2.5 text-sm text-teal-light">
+                <div className="flex gap-2 sm:gap-3 justify-end">
+                  <div className="rounded-lg bg-teal/10 border border-teal/20 px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm text-teal-light">
                     Send the revenue report to the board and reschedule
                     the 2pm meeting to tomorrow.
                   </div>
                 </div>
-                <div className="flex gap-3">
-                  <div className="h-8 w-8 shrink-0 rounded-lg bg-teal/10 flex items-center justify-center border border-teal/20">
-                    <span className="text-teal text-xs font-bold">CEO</span>
+                <div className="flex gap-2 sm:gap-3">
+                  <div className="h-7 w-7 sm:h-8 sm:w-8 shrink-0 rounded-lg bg-teal/10 flex items-center justify-center border border-teal/20">
+                    <span className="text-teal text-[10px] sm:text-xs font-bold">CEO</span>
                   </div>
-                  <div className="rounded-lg bg-white/5 border border-white/5 px-4 py-2.5 text-sm text-muted">
+                  <div className="rounded-lg bg-white/5 border border-white/5 px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm text-muted">
                     <span className="text-teal">Done.</span> Report sent to 5
                     board members. 2pm meeting moved to tomorrow 2pm. Anything
                     else?

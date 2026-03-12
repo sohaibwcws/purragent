@@ -81,7 +81,7 @@ export default function Pricing() {
           </p>
         </motion.div>
 
-        <div className="mt-16 grid gap-6 lg:grid-cols-3">
+        <div className="mt-10 sm:mt-16 grid gap-4 sm:gap-6 lg:grid-cols-3">
           {plans.map((plan, i) => (
             <motion.div
               key={plan.name}
@@ -89,7 +89,7 @@ export default function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className={`relative rounded-2xl border p-6 sm:p-8 transition-all ${
+              className={`relative rounded-2xl border p-5 sm:p-8 transition-all ${
                 plan.featured
                   ? "border-teal/30 bg-teal/5"
                   : "border-white/5 bg-surface-light hover:border-white/10"

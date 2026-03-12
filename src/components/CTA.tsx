@@ -13,7 +13,7 @@ export default function CTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="relative rounded-2xl border border-teal/20 bg-gradient-to-b from-teal/10 to-transparent p-8 sm:p-16"
+          className="relative rounded-2xl border border-teal/20 bg-gradient-to-b from-teal/10 to-transparent p-6 sm:p-16"
         >
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
             Ready to Build Your

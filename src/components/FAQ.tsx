@@ -60,7 +60,7 @@ export default function FAQ() {
           </h2>
         </motion.div>
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 sm:mt-14 grid gap-3 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {faqs.map((faq, i) => (
             <motion.div
               key={i}
@@ -68,7 +68,7 @@ export default function FAQ() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="group relative rounded-2xl border border-white/5 bg-surface-light p-6 transition-all hover:border-teal/20"
+              className="group relative rounded-2xl border border-white/5 bg-surface-light p-4 sm:p-6 transition-all hover:border-teal/20"
             >
               <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-lg bg-teal/10 border border-teal/20 text-teal font-mono text-xs font-bold">
                 {faq.icon}

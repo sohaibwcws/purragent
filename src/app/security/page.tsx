@@ -73,7 +73,7 @@ export default function SecurityPage() {
 
       <section className="pb-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-3 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((feature, i) => (
               <motion.div
                 key={feature.title}
@@ -81,12 +81,12 @@ export default function SecurityPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="group rounded-2xl border border-white/5 bg-surface-light p-6 transition-all hover:border-teal/20"
+                className="group rounded-2xl border border-white/5 bg-surface-light p-4 sm:p-6 transition-all hover:border-teal/20"
               >
-                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-teal/10 border border-teal/20">
-                  <feature.icon size={20} className="text-teal" />
+                <div className="mb-3 sm:mb-4 flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-teal/10 border border-teal/20">
+                  <feature.icon className="text-teal w-[18px] h-[18px] sm:w-5 sm:h-5" />
                 </div>
-                <h3 className="text-base font-semibold">{feature.title}</h3>
+                <h3 className="text-sm sm:text-base font-semibold">{feature.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">
                   {feature.description}
                 </p>

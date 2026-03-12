@@ -24,8 +24,8 @@ export default function Footer() {
   return (
     <footer className="border-t border-white/5 bg-surface py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          <div>
+        <div className="grid gap-8 grid-cols-2 lg:grid-cols-4">
+          <div className="col-span-2 lg:col-span-1">
             <a href="/" className="flex items-center gap-2.5">
               <Logo size={34} />
               <span className="text-lg font-bold">

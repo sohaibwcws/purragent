@@ -75,7 +75,7 @@ export default function BlogPage() {
 
       <section className="pb-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-3 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {posts.map((post, i) => (
               <motion.article
                 key={post.title}
@@ -83,7 +83,7 @@ export default function BlogPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="group flex flex-col rounded-2xl border border-white/5 bg-surface-light p-6 transition-all hover:border-teal/20 cursor-pointer"
+                className="group flex flex-col rounded-2xl border border-white/5 bg-surface-light p-4 sm:p-6 transition-all hover:border-teal/20 cursor-pointer"
               >
                 <div className="flex items-center gap-3 text-xs">
                   <span

@@ -93,13 +93,13 @@ export default function CareersPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: i * 0.06 }}
-                className="group flex items-center justify-between rounded-xl border border-white/5 bg-surface-light p-5 transition-all hover:border-teal/20 cursor-pointer"
+                className="group flex items-center justify-between gap-3 rounded-xl border border-white/5 bg-surface-light p-4 sm:p-5 transition-all hover:border-teal/20 cursor-pointer"
               >
-                <div>
-                  <h3 className="text-sm font-semibold group-hover:text-teal transition-colors">
+                <div className="min-w-0 flex-1">
+                  <h3 className="text-xs sm:text-sm font-semibold group-hover:text-teal transition-colors">
                     {job.title}
                   </h3>
-                  <div className="mt-1.5 flex flex-wrap items-center gap-3 text-xs text-muted">
+                  <div className="mt-1.5 flex flex-wrap items-center gap-2 sm:gap-3 text-xs text-muted">
                     <span className="rounded-full bg-teal/10 border border-teal/20 px-2 py-0.5 text-teal">
                       {job.department}
                     </span>

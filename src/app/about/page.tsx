@@ -79,7 +79,7 @@ export default function AboutPage() {
             Our Journey
           </motion.h2>
           <div className="mt-12 relative">
-            <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-teal/40 via-teal/20 to-transparent sm:left-1/2" />
+            <div className="absolute left-3 sm:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-teal/40 via-teal/20 to-transparent" />
             {timeline.map((item, i) => (
               <motion.div
                 key={i}
@@ -87,12 +87,12 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="relative mb-8 flex items-start gap-6 pl-12 sm:pl-0"
+                className="relative mb-6 sm:mb-8 flex items-start gap-4 sm:gap-6 pl-10 sm:pl-0"
               >
-                <div className="absolute left-2.5 top-1.5 h-3 w-3 rounded-full border-2 border-teal bg-black sm:left-1/2 sm:-translate-x-1/2" />
+                <div className="absolute left-2 sm:left-1/2 top-1.5 h-3 w-3 rounded-full border-2 border-teal bg-black sm:-translate-x-1/2" />
                 <div className="sm:w-1/2 sm:pr-12 sm:text-right">
                   <span className="font-mono text-xs text-teal">{item.year}</span>
-                  <p className="mt-1 text-sm text-muted">{item.event}</p>
+                  <p className="mt-1 text-xs sm:text-sm text-muted">{item.event}</p>
                 </div>
               </motion.div>
             ))}

@@ -48,7 +48,7 @@ export default function HowItWorks() {
           </h2>
         </motion.div>
 
-        <div className="relative mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="relative mt-10 sm:mt-16 grid gap-6 sm:gap-8 grid-cols-2 lg:grid-cols-4">
           {/* Connecting line */}
           <div className="absolute top-16 left-0 right-0 hidden h-px bg-gradient-to-r from-transparent via-teal/20 to-transparent lg:block" />
 
@@ -61,11 +61,11 @@ export default function HowItWorks() {
               transition={{ duration: 0.4, delay: i * 0.15 }}
               className="relative text-center"
             >
-              <div className="relative z-10 mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-full border border-teal/30 bg-black text-teal font-mono text-sm font-bold">
+              <div className="relative z-10 mx-auto mb-3 sm:mb-6 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-teal/30 bg-black text-teal font-mono text-xs sm:text-sm font-bold">
                 {step.step}
               </div>
-              <h3 className="text-lg font-semibold">{step.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">
+              <h3 className="text-sm sm:text-lg font-semibold">{step.title}</h3>
+              <p className="mt-1 sm:mt-2 text-xs sm:text-sm leading-relaxed text-muted">
                 {step.description}
               </p>
             </motion.div>

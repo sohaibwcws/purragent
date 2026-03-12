@@ -59,7 +59,7 @@ export default function AppShowcase() {
         </motion.div>
 
         {/* Phone showcase grid */}
-        <div className="mt-16 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4 lg:gap-8">
+        <div className="mt-10 sm:mt-16 grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-4 lg:gap-8">
           {screens.map((screen, i) => (
             <motion.div
               key={screen.label}
@@ -70,10 +70,10 @@ export default function AppShowcase() {
               className="group flex flex-col items-center"
             >
               {/* Phone frame */}
-              <div className="relative w-full max-w-[220px] sm:max-w-[260px]">
+              <div className="relative w-full max-w-[160px] sm:max-w-[220px] lg:max-w-[260px]">
                 <div className="relative overflow-hidden rounded-[24px] sm:rounded-[32px] border-2 border-white/10 bg-black shadow-2xl shadow-teal/5 transition-all duration-500 group-hover:border-teal/30 group-hover:shadow-teal/10">
                   {/* Notch */}
-                  <div className="absolute top-0 left-1/2 z-10 h-5 w-20 sm:h-6 sm:w-24 -translate-x-1/2 rounded-b-2xl bg-black" />
+                  <div className="absolute top-0 left-1/2 z-10 h-4 w-16 sm:h-5 sm:w-20 lg:h-6 lg:w-24 -translate-x-1/2 rounded-b-2xl bg-black" />
 
                   <Image
                     src={screen.src}
@@ -90,8 +90,8 @@ export default function AppShowcase() {
               </div>
 
               {/* Label */}
-              <div className="mt-4 sm:mt-6 text-center px-1">
-                <h3 className="text-sm sm:text-base font-semibold">
+              <div className="mt-3 sm:mt-6 text-center px-1">
+                <h3 className="text-xs sm:text-sm lg:text-base font-semibold">
                   {screen.label}
                 </h3>
                 <p className="mt-1 text-xs sm:text-sm leading-relaxed text-muted hidden sm:block">

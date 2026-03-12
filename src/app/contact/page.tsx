@@ -40,7 +40,7 @@ export default function ContactPage() {
 
       <section className="pb-24">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-5 sm:grid-cols-3">
+          <div className="grid gap-3 sm:gap-5 sm:grid-cols-3">
             {contactMethods.map((method, i) => (
               <motion.a
                 key={method.title}
@@ -49,7 +49,7 @@ export default function ContactPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="group rounded-2xl border border-white/5 bg-surface-light p-6 text-center transition-all hover:border-teal/20"
+                className="group rounded-2xl border border-white/5 bg-surface-light p-4 sm:p-6 text-center transition-all hover:border-teal/20"
               >
                 <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-teal/10 border border-teal/20">
                   <method.icon size={22} className="text-teal" />
@@ -68,7 +68,7 @@ export default function ContactPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-16 rounded-2xl border border-white/5 bg-surface-light p-8 sm:p-10"
+            className="mt-10 sm:mt-16 rounded-2xl border border-white/5 bg-surface-light p-5 sm:p-10"
           >
             <h2 className="text-xl font-bold text-center">Send Us a Message</h2>
             <p className="mt-2 text-sm text-muted text-center">

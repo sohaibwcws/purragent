@@ -72,7 +72,7 @@ export default function Features() {
           </p>
         </motion.div>
 
-        <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 sm:mt-16 grid gap-3 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, i) => (
             <motion.div
               key={feature.title}
@@ -80,7 +80,7 @@ export default function Features() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="group relative rounded-2xl border border-white/5 bg-surface-light p-6 transition-all hover:border-teal/20 hover:bg-surface-light/80"
+              className="group relative rounded-2xl border border-white/5 bg-surface-light p-4 sm:p-6 transition-all hover:border-teal/20 hover:bg-surface-light/80"
             >
               <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-teal/10 border border-teal/20 transition-colors group-hover:bg-teal/15">
                 <feature.icon size={20} className="text-teal" />
