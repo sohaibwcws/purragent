@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
+import AppStoreBadge from "./AppStoreBadge";
 
 export default function Hero() {
   return (
@@ -75,6 +76,15 @@ export default function Hero() {
           >
             See How It Works
           </a>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-6 flex justify-center"
+        >
+          <AppStoreBadge />
         </motion.div>
 
         {/* Mock UI preview */}

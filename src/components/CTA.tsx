@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import AppStoreBadge from "./AppStoreBadge";
 
 export default function CTA() {
   return (
@@ -34,12 +35,7 @@ export default function CTA() {
                 className="transition-transform group-hover:translate-x-1"
               />
             </a>
-            <a
-              href="mailto:hello@purr.ai"
-              className="text-sm text-muted transition-colors hover:text-white"
-            >
-              Or contact sales
-            </a>
+            <AppStoreBadge />
           </div>
 
           {/* Background glow */}

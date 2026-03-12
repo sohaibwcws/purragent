@@ -13,9 +13,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Purr - Your AI-Powered Office",
+  title: "CatPaW - Your AI-Powered Office",
   description:
     "Chat with your CEO agent, monitor team activity in real-time, and manage your AI workforce from anywhere. Custom AI solutions for businesses.",
+  icons: {
+    icon: "/icon.svg",
+  },
   keywords: [
     "AI",
     "office",

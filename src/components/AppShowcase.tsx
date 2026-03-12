@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import AppStoreBadge from "./AppStoreBadge";
 
 const screens = [
   {
@@ -100,6 +101,18 @@ export default function AppShowcase() {
             </motion.div>
           ))}
         </div>
+
+        {/* App Store CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mt-12 flex flex-col items-center gap-3"
+        >
+          <p className="text-sm text-muted">Available now on iOS</p>
+          <AppStoreBadge />
+        </motion.div>
       </div>
     </section>
   );
