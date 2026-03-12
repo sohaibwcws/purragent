@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Logo from "./Logo";
 
 export default function Footer() {
   return (
@@ -7,13 +7,7 @@ export default function Footer() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <div className="flex items-center gap-2.5">
-              <Image
-                src="/logo.webp"
-                alt="PurrAgent Logo"
-                width={36}
-                height={36}
-                className="rounded-lg"
-              />
+              <Logo size={34} />
               <span className="text-lg font-bold">
                 <span className="text-teal">PURR</span>
                 <span className="text-white">AGENT</span>

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import Image from "next/image";
+import Logo from "./Logo";
 
 const navLinks = [
   { href: "#features", label: "Features" },
@@ -19,13 +19,7 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-black/80 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <a href="#" className="flex items-center gap-2.5">
-          <Image
-            src="/logo.webp"
-            alt="PurrAgent Logo"
-            width={44}
-            height={44}
-            className="rounded-xl"
-          />
+          <Logo size={40} />
           <span className="text-xl font-bold tracking-tight">
             <span className="text-teal">PURR</span>
             <span className="text-white">AGENT</span>
