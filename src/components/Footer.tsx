@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer className="border-t border-white/5 bg-surface py-12">
@@ -5,10 +7,17 @@ export default function Footer() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <div className="flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-teal/10 border border-teal/20">
-                <span className="text-teal font-bold text-base font-mono">P</span>
-              </div>
-              <span className="text-lg font-bold">CatPaW</span>
+              <Image
+                src="/logo.webp"
+                alt="PurrAgent Logo"
+                width={36}
+                height={36}
+                className="rounded-lg"
+              />
+              <span className="text-lg font-bold">
+                <span className="text-teal">PURR</span>
+                <span className="text-white">AGENT</span>
+              </span>
             </div>
             <p className="mt-3 text-sm text-muted leading-relaxed">
               Your AI-powered office at your fingertips. Manage your entire
@@ -64,14 +73,14 @@ export default function Footer() {
                     </a>
                   </li>
                 )
-              )}{" "}
+              )}
             </ul>
           </div>
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-8 sm:flex-row">
           <p className="text-xs text-muted">
-            &copy; {new Date().getFullYear()} CatPaW. All rights reserved.
+            &copy; {new Date().getFullYear()} PurrAgent. All rights reserved.
           </p>
           <div className="flex gap-6">
             {["Twitter", "LinkedIn", "GitHub"].map((item) => (

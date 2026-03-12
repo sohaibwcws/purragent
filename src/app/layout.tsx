@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CatPaW - Your AI-Powered Office",
+  title: "PurrAgent - Your AI-Powered Office",
   description:
     "Chat with your CEO agent, monitor team activity in real-time, and manage your AI workforce from anywhere. Custom AI solutions for businesses.",
   icons: {
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     "bot",
   ],
   openGraph: {
-    title: "Purr - Your AI-Powered Office",
+    title: "PurrAgent - Your AI-Powered Office",
     description:
       "Your AI-powered office at your fingertips. Manage your AI workforce from anywhere.",
     type: "website",

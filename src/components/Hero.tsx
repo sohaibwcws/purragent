@@ -102,7 +102,7 @@ export default function Hero() {
                 <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
                 <div className="w-3 h-3 rounded-full bg-green-500/60" />
                 <span className="ml-3 text-xs text-muted font-mono">
-                  purr://ceo-agent
+                  purragent://ceo-agent
                 </span>
               </div>
 
