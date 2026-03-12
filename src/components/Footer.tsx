@@ -19,7 +19,7 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-semibold">Product</h4>
             <ul className="mt-3 space-y-2">
-              {["Features", "Pricing", "Integrations", "iOS App"].map(
+              {["Features", "The App", "Integrations", "iOS App"].map(
                 (item) => (
                   <li key={item}>
                     <a

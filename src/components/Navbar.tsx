@@ -7,7 +7,7 @@ import { Menu, X } from "lucide-react";
 const navLinks = [
   { href: "#features", label: "Features" },
   { href: "#how-it-works", label: "How It Works" },
-  { href: "#pricing", label: "Pricing" },
+  { href: "#app", label: "The App" },
   { href: "#faq", label: "FAQ" },
 ];
 
@@ -38,7 +38,7 @@ export default function Navbar() {
 
         <div className="hidden items-center gap-3 md:flex">
           <a
-            href="#pricing"
+            href="#app"
             className="rounded-lg bg-teal px-4 py-2 text-sm font-medium text-black transition-all hover:bg-teal-light hover:shadow-[0_0_20px_rgba(20,184,166,0.3)]"
           >
             Get Started
@@ -74,7 +74,7 @@ export default function Navbar() {
                 </a>
               ))}
               <a
-                href="#pricing"
+                href="#app"
                 onClick={() => setMobileOpen(false)}
                 className="mt-2 rounded-lg bg-teal px-4 py-2.5 text-center text-sm font-medium text-black"
               >

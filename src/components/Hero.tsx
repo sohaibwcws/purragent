@@ -60,7 +60,7 @@ export default function Hero() {
           className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
         >
           <a
-            href="#pricing"
+            href="#app"
             className="group flex items-center gap-2 rounded-xl bg-teal px-6 py-3.5 text-sm font-semibold text-black transition-all hover:bg-teal-light hover:shadow-[0_0_30px_rgba(20,184,166,0.4)]"
           >
             Start Building Your AI Office
