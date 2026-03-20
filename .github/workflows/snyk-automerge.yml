@@ -1,8 +1,8 @@
 name: Auto-merge Snyk PRs
 on:
   pull_request:
-    types: [opened, reopened]
-  check_suite:
+    types: [opened, reopened, synchronize]
+  check_run:
     types: [completed]
 
 permissions:
@@ -12,29 +12,62 @@ permissions:
 jobs:
   automerge:
     runs-on: ubuntu-latest
-    if: |
-      startsWith(github.head_ref, 'snyk-fix-') ||
-      startsWith(github.head_ref, 'snyk-upgrade-')
     steps:
       - uses: actions/github-script@v7
         with:
           script: |
-            const prNumber = context.payload.pull_request?.number
-              || context.payload.check_suite?.pull_requests?.[0]?.number;
+            // Get PR number from either event type
+            let prNumber = context.payload.pull_request?.number;
+
+            if (!prNumber && context.payload.check_run) {
+              const prs = context.payload.check_run.pull_requests;
+              if (prs && prs.length > 0) {
+                prNumber = prs[0].number;
+              }
+            }
 
             if (!prNumber) {
-              console.log('No PR number found, skipping.');
+              console.log('No PR found, skipping.');
               return;
             }
 
-            const { data } = await github.rest.pulls.get({
+            // Get full PR details
+            const { data: pr } = await github.rest.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: prNumber,
             });
 
-            if (data.mergeable_state !== 'clean') {
-              console.log(`Not merging — state is: ${data.mergeable_state}`);
+            // Check branch name
+            const branch = pr.head.ref;
+            if (!branch.startsWith('snyk-fix-') && !branch.startsWith('snyk-upgrade-')) {
+              console.log(`Not a Snyk branch: ${branch}`);
+              return;
+            }
+
+            // Wait for mergeable state to settle (retry up to 5 times)
+            let mergeState = pr.mergeable_state;
+            let attempts = 0;
+
+            while (mergeState === 'unstable' || mergeState === 'unknown') {
+              attempts++;
+              if (attempts > 5) {
+                console.log(`Gave up after 5 retries — state: ${mergeState}`);
+                return;
+              }
+              console.log(`State is ${mergeState}, waiting 30s (attempt ${attempts}/5)...`);
+              await new Promise(r => setTimeout(r, 30000));
+
+              const { data: freshPr } = await github.rest.pulls.get({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: prNumber,
+              });
+              mergeState = freshPr.mergeable_state;
+            }
+
+            if (mergeState !== 'clean') {
+              console.log(`Not merging — state is: ${mergeState}`);
               return;
             }
 
@@ -44,3 +77,5 @@ jobs:
               pull_number: prNumber,
               merge_method: 'squash',
             });
+
+            console.log(`Merged PR #${prNumber} (${branch})`);
