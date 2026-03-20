@@ -1,5 +1,9 @@
 name: Auto-merge Snyk PRs
-on: pull_request
+on:
+  pull_request:
+    types: [opened, reopened]
+  check_suite:
+    types: [completed]
 
 permissions:
   pull-requests: write
@@ -8,14 +12,35 @@ permissions:
 jobs:
   automerge:
     runs-on: ubuntu-latest
-    if: startsWith(github.head_ref, 'snyk-fix-') || startsWith(github.head_ref, 'snyk-upgrade-')
+    if: |
+      startsWith(github.head_ref, 'snyk-fix-') ||
+      startsWith(github.head_ref, 'snyk-upgrade-')
     steps:
       - uses: actions/github-script@v7
         with:
           script: |
+            const prNumber = context.payload.pull_request?.number
+              || context.payload.check_suite?.pull_requests?.[0]?.number;
+
+            if (!prNumber) {
+              console.log('No PR number found, skipping.');
+              return;
+            }
+
+            const { data } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber,
+            });
+
+            if (data.mergeable_state !== 'clean') {
+              console.log(`Not merging — state is: ${data.mergeable_state}`);
+              return;
+            }
+
             await github.rest.pulls.merge({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: context.payload.pull_request.number,
-              merge_method: 'squash'
-            })
+              pull_number: prNumber,
+              merge_method: 'squash',
+            });
