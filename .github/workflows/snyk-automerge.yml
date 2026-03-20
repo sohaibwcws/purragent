@@ -45,32 +45,50 @@ jobs:
               return;
             }
 
-            // Wait for mergeable state to settle (retry up to 5 times)
-            let mergeState = pr.mergeable_state;
-            let attempts = 0;
-
-            while (mergeState === 'unstable' || mergeState === 'unknown') {
-              attempts++;
-              if (attempts > 5) {
-                console.log(`Gave up after 5 retries — state: ${mergeState}`);
-                return;
-              }
-              console.log(`State is ${mergeState}, waiting 30s (attempt ${attempts}/5)...`);
-              await new Promise(r => setTimeout(r, 30000));
-
-              const { data: freshPr } = await github.rest.pulls.get({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                pull_number: prNumber,
-              });
-              mergeState = freshPr.mergeable_state;
-            }
-
-            if (mergeState !== 'clean') {
-              console.log(`Not merging — state is: ${mergeState}`);
+            if (!pr.mergeable) {
+              console.log('PR has merge conflicts, skipping.');
               return;
             }
 
+            // Check all status checks on the PR (exclude our own workflow)
+            const { data: checks } = await github.rest.checks.listForRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: pr.head.sha,
+            });
+
+            const otherChecks = checks.check_runs.filter(c => c.name !== 'automerge');
+
+            const pending = otherChecks.filter(c => c.status !== 'completed');
+            if (pending.length > 0) {
+              console.log(`Waiting on ${pending.length} checks: ${pending.map(c => c.name).join(', ')}`);
+              return;
+            }
+
+            const failed = otherChecks.filter(c => c.conclusion !== 'success' && c.conclusion !== 'neutral' && c.conclusion !== 'skipped');
+            if (failed.length > 0) {
+              console.log(`Failed checks: ${failed.map(c => `${c.name}=${c.conclusion}`).join(', ')}`);
+              return;
+            }
+
+            // Also check commit statuses (like Snyk)
+            const { data: statuses } = await github.rest.repos.getCombinedStatusForRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: pr.head.sha,
+            });
+
+            if (statuses.state === 'pending') {
+              console.log('Commit statuses still pending, skipping.');
+              return;
+            }
+
+            if (statuses.state === 'failure') {
+              console.log(`Commit status failed: ${statuses.statuses.filter(s => s.state === 'failure').map(s => s.context).join(', ')}`);
+              return;
+            }
+
+            // All checks passed — merge
             await github.rest.pulls.merge({
               owner: context.repo.owner,
               repo: context.repo.repo,
