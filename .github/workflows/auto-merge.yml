@@ -1,7 +1,7 @@
 name: Dependabot Auto-Merge
 
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, synchronize, reopened]
 
 permissions:
@@ -35,28 +35,30 @@ jobs:
             echo "should_merge=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Wait for CI to pass
+      - name: Wait for CI build to pass
         if: steps.check.outputs.should_merge == 'true'
         uses: lewagon/wait-on-check-action@v1.3.4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          check-name: "build"
+          check-name: build
           wait-interval: 15
           allowed-conclusions: success
 
       - name: Auto-merge patch/minor updates
         if: steps.check.outputs.should_merge == 'true'
         env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_NUM: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh pr merge --auto --squash "$PR_URL"
+        run: gh pr merge --squash "$PR_NUM" --repo "$REPO"
 
       - name: Label major updates for review
         if: steps.check.outputs.should_merge == 'false'
         env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_NUM: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh pr comment "$PR_URL" --body "This is a **major version bump** and will NOT be auto-merged. Please review manually and test before merging."
-          gh pr edit "$PR_URL" --add-label "major-update" 2>/dev/null || true
+          gh pr comment "$PR_NUM" --repo "$REPO" --body "This is a **major version bump** and will NOT be auto-merged. Please review manually and test before merging."
+          gh pr edit "$PR_NUM" --repo "$REPO" --add-label "major-update" 2>/dev/null || true
