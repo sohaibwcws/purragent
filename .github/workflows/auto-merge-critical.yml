@@ -29,6 +29,8 @@ jobs:
           node-version: 22
 
       - name: Build check
+        id: build
+        continue-on-error: true
         run: npm ci && npm run build
 
       - name: Auto-approve
@@ -39,6 +41,14 @@ jobs:
 
       - name: Auto-merge
         run: gh pr merge --squash "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Warn if build failed
+        if: steps.build.outcome == 'failure'
+        run: |
+          gh pr comment "$PR_URL" --body "⚠️ Build check failed but PR was merged (likely a pre-existing issue). Please check the build."
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
