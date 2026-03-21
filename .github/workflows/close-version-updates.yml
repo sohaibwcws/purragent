@@ -1,0 +1,29 @@
+name: Close Dependabot Version Update PRs
+
+on:
+  pull_request:
+    types: [opened]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  close-version-updates:
+    runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]'
+
+    steps:
+      - name: Get Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Close if version update (not security)
+        if: steps.metadata.outputs.update-type != 'security'
+        run: |
+          gh pr close "$PR_URL" \
+            --comment "Auto-closed: This is a version update, not a security fix."
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
