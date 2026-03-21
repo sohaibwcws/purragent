@@ -3,12 +3,22 @@ name: CI Build Check
 on:
   pull_request:
     branches: [main, master]
+  pull_request_target:
+    branches: [main, master]
+
+# Prevent duplicate runs when both events fire for the same PR
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # For pull_request_target, checkout the PR head (not base)
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Detect package manager
         id: detect-pm
@@ -39,6 +49,9 @@ jobs:
 
       - name: Generate Prisma client
         run: npx prisma generate 2>/dev/null || true
+
+      - name: Type check
+        run: npx tsc --noEmit 2>/dev/null || true
 
       - name: Build
         run: |
