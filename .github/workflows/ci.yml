@@ -1,0 +1,49 @@
+name: CI Build Check
+
+on:
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect package manager
+        id: detect-pm
+        run: |
+          if [ -f "pnpm-lock.yaml" ]; then
+            echo "manager=pnpm" >> "$GITHUB_OUTPUT"
+            echo "install=pnpm i --frozen-lockfile" >> "$GITHUB_OUTPUT"
+          elif [ -f "yarn.lock" ]; then
+            echo "manager=yarn" >> "$GITHUB_OUTPUT"
+            echo "install=yarn install --frozen-lockfile" >> "$GITHUB_OUTPUT"
+          else
+            echo "manager=npm" >> "$GITHUB_OUTPUT"
+            echo "install=npm ci" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install pnpm
+        if: steps.detect-pm.outputs.manager == 'pnpm'
+        run: npm i -g pnpm
+
+      - name: Install dependencies
+        env:
+          INSTALL_CMD: ${{ steps.detect-pm.outputs.install }}
+        run: $INSTALL_CMD
+
+      - name: Generate Prisma client
+        run: npx prisma generate 2>/dev/null || true
+
+      - name: Build
+        run: |
+          if grep -q '"build"' package.json 2>/dev/null; then
+            npm run build
+          else
+            echo "No build script found, skipping build"
+          fi

@@ -6,7 +6,14 @@ updates:
       interval: "weekly"
       day: "monday"
     open-pull-requests-limit: 5
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
     groups:
-      npm_and_yarn:
-        patterns:
-          - "*"
+      security-patches:
+        applies-to: security-updates
+        patterns: ["*"]
+      minor-updates:
+        applies-to: version-updates
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
